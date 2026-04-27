@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Contador</title>
+  </head>
+  <body>
+    <main class="counter">
+      <div class="counter__actions">
+        <button id="btn-reset" class="btn btn--reset" aria-label="Resetear">↺</button>
+        <button id="btn-theme" class="btn btn--theme" aria-label="Cambiar tema">☽</button>
+      </div>
+      <output
+        id="counter-display"
+        class="counter__value"
+        for="btn--increment btn--decrement"
+        >0</output
+      >
+      <div class="counter__controls">
+        <button
+          id="btn-decrement"
+          class="btn btn--decrement"
+          aria-label="Decrementar"
+        >
+          −
+        </button>
+        <button
+          id="btn-increment"
+          class="btn btn--increment"
+          aria-label="Incrementar"
+        >
+          +
+        </button>
+      </div>
+    </main>
+    <script src="src/main.js" type="module"></script>
+  </body>
+</html>

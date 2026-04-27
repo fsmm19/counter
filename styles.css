@@ -1,0 +1,192 @@
+:root {
+  --bg: #f0f2f5;
+  --card-bg: #fff;
+  --text: #1a1a2e;
+  --card-shadow: rgba(0, 0, 0, 0.08);
+
+  --btn-decrement-bg: #fee2e2;
+  --btn-decrement-color: #b91c1c;
+  --btn-decrement-hover-bg: #fecaca;
+  --btn-decrement-shadow: rgba(185, 28, 28, 0.3);
+
+  --btn-increment-bg: #dcfce7;
+  --btn-increment-color: #15803d;
+  --btn-increment-hover-bg: #bbf7d0;
+  --btn-increment-shadow: rgba(21, 128, 61, 0.3);
+
+  --btn-secondary-border: #cbd5e1;
+  --btn-secondary-color: #64748b;
+  --btn-secondary-hover-bg: #f1f5f9;
+  --btn-secondary-hover-border: #94a3b8;
+  --btn-secondary-hover-color: #475569;
+}
+
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --card-bg: #1a1a1a;
+  --text: #ebebeb;
+  --card-shadow: rgba(0, 0, 0, 0.6);
+
+  --btn-decrement-bg: #5c1a1a;
+  --btn-decrement-color: #fca5a5;
+  --btn-decrement-hover-bg: #7a2020;
+  --btn-decrement-shadow: rgba(252, 165, 165, 0.25);
+
+  --btn-increment-bg: #14532d;
+  --btn-increment-color: #86efac;
+  --btn-increment-hover-bg: #166534;
+  --btn-increment-shadow: rgba(134, 239, 172, 0.25);
+
+  --btn-secondary-border: #2e2e2e;
+  --btn-secondary-color: #a0a0a0;
+  --btn-secondary-hover-bg: #2e2e2e;
+  --btn-secondary-hover-border: #555;
+  --btn-secondary-hover-color: #c0c0c0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  font-family: system-ui, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.counter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background: var(--card-bg);
+  padding: 2rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px var(--card-shadow);
+  width: min(90vw, 28rem);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.counter__value {
+  font-size: clamp(4.5rem, 20vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: -0.04em;
+  min-width: 3ch;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.counter__controls {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.btn {
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.15s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Botones secundarios (reset y tema) */
+.counter__actions {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btn--reset,
+.btn--theme {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.3rem;
+  background: transparent;
+  border: 1.5px solid var(--btn-secondary-border);
+  color: var(--btn-secondary-color);
+}
+
+@media (hover: hover) {
+  .btn--reset:hover,
+  .btn--theme:hover {
+    background-color: var(--btn-secondary-hover-bg);
+    border-color: var(--btn-secondary-hover-border);
+    color: var(--btn-secondary-hover-color);
+  }
+}
+
+/* Botones principales */
+.btn--decrement {
+  background-color: var(--btn-decrement-bg);
+  color: var(--btn-decrement-color);
+}
+
+.btn--increment {
+  background-color: var(--btn-increment-bg);
+  color: var(--btn-increment-color);
+}
+
+@media (hover: hover) {
+  .btn--decrement:hover {
+    background-color: var(--btn-decrement-hover-bg);
+    box-shadow: 0 4px 16px var(--btn-decrement-shadow);
+  }
+
+  .btn--increment:hover {
+    background-color: var(--btn-increment-hover-bg);
+    box-shadow: 0 4px 16px var(--btn-increment-shadow);
+  }
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active,
+.btn--pressing {
+  transform: scale(0.9);
+  box-shadow: none;
+}
+
+@media (min-width: 480px) {
+  .counter {
+    gap: 2.5rem;
+    padding: 3rem 5rem;
+  }
+
+  .counter__controls {
+    gap: 1.5rem;
+  }
+
+  .counter__controls .btn {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 2rem;
+  }
+}
