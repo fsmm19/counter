@@ -54,6 +54,7 @@
 
 body {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,7 +80,7 @@ body {
 }
 
 .counter__value {
-  font-size: clamp(4.5rem, 20vw, 8rem);
+  font-size: clamp(4.5rem, 28vw, 8rem);
   font-weight: 700;
   line-height: 1;
   color: var(--text);
