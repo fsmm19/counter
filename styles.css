@@ -21,7 +21,7 @@
   --btn-secondary-hover-color: #475569;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg: #0a0a0a;
   --card-bg: #1a1a1a;
   --text: #ebebeb;
@@ -73,7 +73,9 @@ body {
   border-radius: 1.5rem;
   box-shadow: 0 4px 32px var(--card-shadow);
   width: min(90vw, 28rem);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .counter__value {
@@ -112,7 +114,6 @@ body {
     border-color 0.3s ease;
 }
 
-/* Botones secundarios (reset y tema) */
 .counter__actions {
   position: absolute;
   top: 0.75rem;
@@ -132,6 +133,64 @@ body {
   color: var(--btn-secondary-color);
 }
 
+.theme-icon,
+.btn--reset svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.theme-icon .sun {
+  transform-origin: center center;
+}
+
+.theme-icon .sun-beams {
+  transform-origin: center center;
+}
+
+[data-theme='dark'] .theme-icon .sun {
+  transform: scale(1.75);
+}
+
+[data-theme='dark'] .theme-icon .sun-beams {
+  opacity: 0;
+  transform: rotateZ(-25deg);
+}
+
+[data-theme='dark'] #moon-circle {
+  cx: 17;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .theme-icon .sun {
+    transition: transform 500ms cubic-bezier(0.5, 1.25, 0.75, 1.25);
+  }
+
+  .theme-icon .sun-beams {
+    transition:
+      transform 500ms cubic-bezier(0.5, 1.25, 0.75, 1.25),
+      opacity 500ms cubic-bezier(0.25, 0, 0.3, 1);
+  }
+
+  #moon-circle {
+    transition: cx 250ms cubic-bezier(0, 0, 0, 1) 250ms;
+  }
+
+  [data-theme='dark'] .theme-icon .sun {
+    transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+    transition-duration: 250ms;
+  }
+
+  [data-theme='dark'] .theme-icon .sun-beams {
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.25, 0, 0.3, 1);
+  }
+
+  [data-theme='dark'] #moon-circle {
+    transition-delay: 0ms;
+    transition-duration: 500ms;
+  }
+}
+
 @media (hover: hover) {
   .btn--reset:hover,
   .btn--theme:hover {
@@ -141,7 +200,6 @@ body {
   }
 }
 
-/* Botones principales */
 .btn--decrement {
   background-color: var(--btn-decrement-bg);
   color: var(--btn-decrement-color);
