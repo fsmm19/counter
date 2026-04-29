@@ -1,7 +1,8 @@
 import './theme.js';
 import { increment, decrement, reset } from './counter.js';
 import { showUndoToast, showLimitReachedToast } from './toast.js';
-import { initSettingsModal, isModalOpen } from './modal.js';
+import { initSettingsModal, isModalOpen } from './modal-settings.js';
+import { initInfoModal, isInfoModalOpen } from './modal-info.js';
 
 const MAX_COUNT = 9999;
 const MIN_COUNT = -9999;
@@ -67,7 +68,7 @@ function pressButton(btn, operation) {
 }
 
 document.addEventListener('keydown', (e) => {
-  if (!isModalOpen()) {
+  if (!isModalOpen() && !isInfoModalOpen()) {
     if (e.key === '+' || e.key === 'ArrowRight' || e.key === 'ArrowUp') {
       pressButton(btnIncrement, increment);
     } else if (
@@ -79,6 +80,8 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+initInfoModal();
 
 initSettingsModal({
   getState: () => ({ count: state.count, step: state.step }),
