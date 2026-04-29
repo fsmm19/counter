@@ -1,3 +1,3 @@
-export const increment = (count) => count + 1;
-export const decrement = (count) => count - 1;
+export const increment = (count, step) => count + step;
+export const decrement = (count, step) => count - step;
 export const reset = () => 0;

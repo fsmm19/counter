@@ -1,10 +1,15 @@
 import './theme.js';
 import { increment, decrement, reset } from './counter.js';
-import { showUndoToast } from './toast.js';
+import { showUndoToast, showLimitReachedToast } from './toast.js';
+import { initSettingsModal, isModalOpen } from './modal.js';
+
+const MAX_COUNT = 9999;
+const MIN_COUNT = -9999;
 
 const state = {
   count: 0,
   previousCount: 0,
+  step: 1,
 };
 
 const btnIncrement = document.getElementById('btn-increment');
@@ -18,6 +23,18 @@ function renderCounter(value) {
 }
 
 function updateCounter(operation) {
+  const nextCount = operation(state.count, state.step);
+
+  if (nextCount > MAX_COUNT) {
+    showLimitReachedToast('max');
+    return;
+  }
+
+  if (nextCount < MIN_COUNT) {
+    showLimitReachedToast('min');
+    return;
+  }
+
   if (operation === reset) {
     state.previousCount = state.count;
 
@@ -27,7 +44,7 @@ function updateCounter(operation) {
     });
   }
 
-  state.count = operation(state.count);
+  state.count = nextCount;
   renderCounter(state.count);
 }
 
@@ -50,9 +67,24 @@ function pressButton(btn, operation) {
 }
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === '+' || e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-    pressButton(btnIncrement, increment);
-  } else if (e.key === '-' || e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-    pressButton(btnDecrement, decrement);
+  if (!isModalOpen()) {
+    if (e.key === '+' || e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+      pressButton(btnIncrement, increment);
+    } else if (
+      e.key === '-' ||
+      e.key === 'ArrowLeft' ||
+      e.key === 'ArrowDown'
+    ) {
+      pressButton(btnDecrement, decrement);
+    }
   }
+});
+
+initSettingsModal({
+  getState: () => ({ count: state.count, step: state.step }),
+  onApply: ({ count, step }) => {
+    state.count = count;
+    state.step = step;
+    renderCounter(state.count);
+  },
 });

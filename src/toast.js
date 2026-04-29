@@ -31,6 +31,28 @@ export function showUndoToast(onUndo) {
   timeoutId = setTimeout(() => dismissToast(false), DURATION);
 }
 
+export function showLimitReachedToast(limitType) {
+  dismissToast(false);
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.innerHTML = `
+    <span class="toast__message">Valor ${limitType === 'max' ? 'máximo' : 'mínimo'} alcanzado</span>
+    <div class="toast__progress"></div>
+  `;
+
+  document.body.appendChild(toast);
+  activeToast = toast;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => toast.classList.add('toast--visible'));
+  });
+
+  timeoutId = setTimeout(() => dismissToast(false), DURATION);
+}
+
 function dismissToast(immediate) {
   if (!activeToast) return;
   clearTimeout(timeoutId);
