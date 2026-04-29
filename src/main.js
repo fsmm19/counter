@@ -1,21 +1,34 @@
 import './theme.js';
 import { increment, decrement, reset } from './counter.js';
+import { showUndoToast } from './toast.js';
 
-let count = 0;
+const state = {
+  count: 0,
+  previousCount: 0,
+};
 
 const btnIncrement = document.getElementById('btn-increment');
 const btnDecrement = document.getElementById('btn-decrement');
 const btnReset = document.getElementById('btn-reset');
 
-renderCounter(count);
+renderCounter(state.count);
 
 function renderCounter(value) {
   document.getElementById('counter-display').innerText = value;
 }
 
 function updateCounter(operation) {
-  count = operation(count);
-  renderCounter(count);
+  if (operation === reset) {
+    state.previousCount = state.count;
+
+    showUndoToast(() => {
+      state.count = state.previousCount;
+      renderCounter(state.count);
+    });
+  }
+
+  state.count = operation(state.count);
+  renderCounter(state.count);
 }
 
 btnIncrement.addEventListener('click', () => {
