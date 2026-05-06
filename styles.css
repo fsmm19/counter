@@ -90,9 +90,15 @@ body {
 }
 
 @keyframes screen-flash {
-  0% { opacity: 0; }
-  20% { opacity: 0.28; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.28;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .screen-flash {

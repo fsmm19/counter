@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=2" />
     <title>Contador</title>
     <script>
       document.documentElement.dataset.theme =
@@ -16,7 +16,12 @@
   <body>
     <main class="counter">
       <div class="counter__actions">
-        <div id="out-of-range-badge" class="out-of-range-badge" role="status" aria-live="polite">
+        <div
+          id="out-of-range-badge"
+          class="out-of-range-badge"
+          role="status"
+          aria-live="polite"
+        >
           <span>Fuera de rango</span>
           <span class="out-of-range-badge__delta"></span>
         </div>
@@ -213,7 +218,12 @@
           <div class="modal__fields-row">
             <label class="modal__field">
               <span class="modal__label">Límite mínimo</span>
-              <input id="input-min" class="modal__input" type="number" placeholder="–" />
+              <input
+                id="input-min"
+                class="modal__input"
+                type="number"
+                placeholder="–"
+              />
               <span
                 id="error-min"
                 class="modal__error"
@@ -222,7 +232,12 @@
             </label>
             <label class="modal__field">
               <span class="modal__label">Límite máximo</span>
-              <input id="input-max" class="modal__input" type="number" placeholder="–" />
+              <input
+                id="input-max"
+                class="modal__input"
+                type="number"
+                placeholder="–"
+              />
               <span
                 id="error-max"
                 class="modal__error"

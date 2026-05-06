@@ -100,7 +100,12 @@ export function initSettingsModal({ getState, onApply }) {
     const minError = validateLimit(inputMin.value);
     let maxError = validateLimit(inputMax.value);
 
-    if (!minError && !maxError && inputMin.value !== '' && inputMax.value !== '') {
+    if (
+      !minError &&
+      !maxError &&
+      inputMin.value !== '' &&
+      inputMax.value !== ''
+    ) {
       if (parseInt(inputMin.value, 10) > parseInt(inputMax.value, 10)) {
         maxError = 'Debe ser mayor al límite mínimo';
       }

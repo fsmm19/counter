@@ -21,7 +21,9 @@ const btnReset = document.getElementById('btn-reset');
 const counterDisplay = document.getElementById('counter-display');
 const screenFlashEl = document.getElementById('screen-flash');
 const outOfRangeBadge = document.getElementById('out-of-range-badge');
-const outOfRangeDelta = outOfRangeBadge.querySelector('.out-of-range-badge__delta');
+const outOfRangeDelta = outOfRangeBadge.querySelector(
+  '.out-of-range-badge__delta',
+);
 
 renderCounter(state.count);
 
@@ -41,7 +43,10 @@ function flashScreen() {
 }
 
 function isOutOfRange(count) {
-  return (state.max !== null && count > state.max) || (state.min !== null && count < state.min);
+  return (
+    (state.max !== null && count > state.max) ||
+    (state.min !== null && count < state.min)
+  );
 }
 
 function distanceFromRange(count) {
@@ -90,7 +95,10 @@ function updateCounter(operation) {
   renderCounter(state.count);
   const nowOutOfRange = isOutOfRange(state.count);
 
-  if (nowOutOfRange && distanceFromRange(state.count) > distanceFromRange(prevCount)) {
+  if (
+    nowOutOfRange &&
+    distanceFromRange(state.count) > distanceFromRange(prevCount)
+  ) {
     flashScreen();
   }
 
