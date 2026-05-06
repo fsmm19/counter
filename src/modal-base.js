@@ -9,8 +9,15 @@ export function createModal(dialogId, closeButtonId) {
     dialog.close();
   }
 
-  dialog.addEventListener('click', (e) => {
-    if (e.target === dialog) close();
+  let mouseDownOnOverlay = false;
+
+  dialog.addEventListener('mousedown', (e) => {
+    mouseDownOnOverlay = e.target === dialog;
+  });
+
+  dialog.addEventListener('mouseup', (e) => {
+    if (mouseDownOnOverlay && e.target === dialog) close();
+    mouseDownOnOverlay = false;
   });
 
   document.getElementById(closeButtonId).addEventListener('click', close);

@@ -16,6 +16,10 @@
   <body>
     <main class="counter">
       <div class="counter__actions">
+        <div id="out-of-range-badge" class="out-of-range-badge" role="status" aria-live="polite">
+          <span>Fuera de rango</span>
+          <span class="out-of-range-badge__delta"></span>
+        </div>
         <div class="counter__actions-group">
           <button
             id="btn-settings"
@@ -206,6 +210,26 @@
               aria-live="polite"
             ></span>
           </label>
+          <div class="modal__fields-row">
+            <label class="modal__field">
+              <span class="modal__label">Límite mínimo</span>
+              <input id="input-min" class="modal__input" type="number" placeholder="–" />
+              <span
+                id="error-min"
+                class="modal__error"
+                aria-live="polite"
+              ></span>
+            </label>
+            <label class="modal__field">
+              <span class="modal__label">Límite máximo</span>
+              <input id="input-max" class="modal__input" type="number" placeholder="–" />
+              <span
+                id="error-max"
+                class="modal__error"
+                aria-live="polite"
+              ></span>
+            </label>
+          </div>
           <div class="modal__footer">
             <button type="button" id="btn-modal-cancel" class="btn btn--cancel">
               Cancelar
@@ -282,6 +306,7 @@
         </div>
       </div>
     </dialog>
+    <div id="screen-flash" class="screen-flash"></div>
     <script src="src/main.js" type="module"></script>
   </body>
 </html>
